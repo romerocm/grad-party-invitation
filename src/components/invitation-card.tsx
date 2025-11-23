@@ -5,12 +5,14 @@ import { CalendarDays, Clock4, GraduationCap, MapPin } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
+const CARD_HEIGHT_CLOSED = 420;
+const CARD_HEIGHT_OPEN = 520;
+
 export function InvitationCard() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="w-full max-w-xl">
-      <div className="mb-3 text-xs uppercase tracking-[0.6em] text-slate-500"></div>
       <div
         className="perspective cursor-pointer"
         role="button"
@@ -18,8 +20,11 @@ export function InvitationCard() {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         <motion.div
-          className="relative h-[420px] w-full"
-          style={{ transformStyle: "preserve-3d" }}
+          className="relative w-full"
+          style={{
+            transformStyle: "preserve-3d",
+            height: isOpen ? CARD_HEIGHT_OPEN : CARD_HEIGHT_CLOSED,
+          }}
           animate={{
             rotateY: isOpen ? 0 : -18,
             rotateX: isOpen ? 0 : 6,
@@ -69,18 +74,18 @@ export function InvitationCard() {
             <div
               aria-hidden={!isOpen}
               className={cn(
-                "absolute inset-0 rounded-[34px] border border-slate-200 bg-[#fdfcf7] p-10 text-center shadow-[0_30px_70px_rgba(15,23,42,0.18)]",
+                "absolute inset-0 rounded-[34px] border border-slate-200 bg-[#fdfcf7] p-6 text-center shadow-[0_30px_70px_rgba(15,23,42,0.18)] sm:p-10",
                 "backface-hidden flex flex-col items-center justify-between"
               )}
             >
               <div>
-                <p className="text-[13px] uppercase tracking-[0.6em] text-slate-600">
+                <p className="text-xs uppercase tracking-[0.6em] text-slate-600 sm:text-[13px]">
                   Celebración de
                 </p>
-                <h1 className="mt-2 text-4xl font-black tracking-[0.2em] text-slate-900">
+                <h1 className="mt-2 text-3xl font-black tracking-[0.2em] text-slate-900 sm:text-4xl">
                   GRADUACIÓN
                 </h1>
-                <p className="mt-1 text-lg font-semibold uppercase tracking-[0.6em] text-slate-700">
+                <p className="mt-1 text-base font-semibold uppercase tracking-[0.6em] text-slate-700 sm:text-lg">
                   para Carlos
                 </p>
               </div>
@@ -90,12 +95,12 @@ export function InvitationCard() {
                 strokeWidth={1.3}
               />
 
-              <p className="text-lg leading-8 text-slate-700">
+              <p className="text-base leading-7 text-slate-700 sm:text-lg sm:leading-8">
                 Te invitamos a acompañarnos en una reunión íntima para celebrar
                 este logro.
               </p>
 
-              <div className="w-full space-y-3 text-sm uppercase tracking-[0.35em] text-slate-700">
+              <div className="w-full space-y-3 text-xs uppercase tracking-[0.25em] text-slate-700 sm:text-sm sm:tracking-[0.35em]">
                 <div className="flex flex-wrap items-center justify-center gap-3 text-center">
                   <CalendarDays
                     className="h-5 w-5 flex-shrink-0 text-slate-700"
@@ -126,7 +131,7 @@ export function InvitationCard() {
             <div
               aria-hidden={!isOpen}
               className={cn(
-                "absolute inset-0 flex h-full flex-col justify-between rounded-[34px] border border-slate-200 bg-[#fdf9f1] p-10 text-center shadow-inner",
+                "absolute inset-0 flex h-full flex-col justify-between rounded-[34px] border border-slate-200 bg-[#fdf9f1] p-6 text-center shadow-inner sm:p-10",
                 "backface-hidden"
               )}
               style={{ transform: "rotateY(180deg)" }}
